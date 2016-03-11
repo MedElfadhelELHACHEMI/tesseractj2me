@@ -22,7 +22,7 @@ public class Midlet extends MIDlet {
     public static Midlet INSTANCE = null;
     public void startApp() {
         INSTANCE = this;
-        disp.setCurrent(new Welcome());
+        disp.setCurrent(new Animation());
     }
     
     public void pauseApp() {
