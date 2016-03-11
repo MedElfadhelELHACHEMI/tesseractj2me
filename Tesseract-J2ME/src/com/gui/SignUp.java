@@ -48,6 +48,8 @@ public class SignUp extends Canvas implements Runnable {
     int select, i, j, k, l, m, n, o;
 
     String username, pwd, email, email2, nom, prenom, adresse, date, tel, pwdDisp;
+    
+    private String role="APR";
 
     int screen;
     boolean verif = true;
@@ -139,7 +141,7 @@ public class SignUp extends Canvas implements Runnable {
             g.drawString(tel, 15, h / 4 + 4 * h_i + 30, g.BASELINE | g.LEFT);
 
             g.setColor(218, 218, 218);
-            g.drawString("(dd/mm/yyyy)", w - 80, h / 4 + 2 * h_i + 4, g.RIGHT | g.BASELINE);
+            g.drawString("(dd-mm-yyyy)", w - 80, h / 4 + 2 * h_i + 4, g.RIGHT | g.BASELINE);
 
             g.drawImage(right[m], w, h, g.BOTTOM | g.RIGHT);
             g.drawImage(left[n], 0, h, g.BOTTOM | g.LEFT);
@@ -233,13 +235,24 @@ public class SignUp extends Canvas implements Runnable {
                     }
                 } else if (select == 2) {
                     if (keyCode != -8) {
-                        email += getKeyName(keyCode);
+                        if(keyCode==249){
+                            email +="@";
+                        }
+                        else{
+                            email += getKeyName(keyCode);
+                        }
+               
                     } else if (keyCode == -8 && email.length() > 0) {
                         email = email.substring(0, email.length() - 1);
                     }
                 } else if (select == 3) {
                     if (keyCode != -8) {
+                        if(keyCode==249){
+                            email2 +="@";
+                        }
+                        else{
                         email2 += getKeyName(keyCode);
+                        }
                     } else if (keyCode == -8 && email2.length() > 0) {
                         email2 = email2.substring(0, email2.length() - 1);
                     }
@@ -258,10 +271,12 @@ public class SignUp extends Canvas implements Runnable {
                         nom = nom.substring(0, nom.length() - 1);
                     }
                 } else if (select == 2) {
-                    if (keyCode > 46 && keyCode < 58) {
+                    if ((keyCode > 47 && keyCode < 58)) {
                         date += getKeyName(keyCode);
                     } else if (keyCode == -8 && date.length() > 0) {
                         date = date.substring(0, date.length() - 1);
+                    }else if(keyCode==35){
+                        date+=(char)45;
                     }
                 } else if (select == 3) {
                     if (keyCode != -8) {
@@ -326,35 +341,40 @@ public class SignUp extends Canvas implements Runnable {
     }
 
     public void run() {
-        if (Thread.currentThread().getName().equals("login")) {
-            String str = "http://localhost/pi/login.php?username=" + username.trim() + "&password=" + pwd.trim();
+        if (Thread.currentThread().getName().equals("signup")) {
+            String str = "http://localhost/tesseractj2me/tesseract_php/insertAppr.php?username=" + username.trim() 
+                    + "&password=" + pwd.trim() 
+                    + "&nom=" + nom.trim() 
+                    + "&prenom=" + prenom.trim() 
+                    + "&role=" + role.trim() 
+                    + "&email=" + email.trim() 
+                    + "&adresse=" + adresse.trim() 
+                    + "&telephone=" + tel.trim()
+                    + "&date=" +date.trim();
+            System.out.println(str);
             verif = false;
             try {
                 httpConnection = (HttpConnection) Connector.open(str);
                 dataInputStream = new DataInputStream(httpConnection.openDataInputStream());
-                SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-                UtilisateurHandler utilisateurHandler = new UtilisateurHandler();
-                parser.parse(dataInputStream, utilisateurHandler);
-                if (utilisateurHandler.getUtilisateur()[0] != null) {
-                    Apprenant currentUtilisateur = new Apprenant((Apprenant) utilisateurHandler.getUtilisateur()[0]);
-                    verif = true;
-                    Midlet.INSTANCE.ApprenantCurrent = currentUtilisateur;
+                StringBuffer sb = new StringBuffer();
+                int ch;
 
+                while ((ch = dataInputStream.read()) != -1) {
+                    sb.append((char) ch);
                 }
-                Thread.currentThread().interrupt();
+
+                if ("successfully added".equals(sb.toString().trim())) {
+                    verif=true;
+                }
 
             } catch (IOException ex) {
                 ex.printStackTrace();
-            } catch (ParserConfigurationException ex) {
-                ex.printStackTrace();
-            } catch (SAXException ex) {
-                //ex.printStackTrace();
             }
         }
         if (verif == false) {
             repaint();
         } else {
-            Midlet.INSTANCE.disp.setCurrent(new ApprenantMenu());
+            Midlet.INSTANCE.disp.setCurrent(new SignIn());
         }
     }
 

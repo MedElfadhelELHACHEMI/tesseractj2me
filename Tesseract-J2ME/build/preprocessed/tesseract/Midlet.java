@@ -7,6 +7,7 @@ package tesseract;
 
 import com.entities.Apprenant;
 import com.gui.Animation;
+import com.gui.Welcome;
 import javax.microedition.lcdui.*;
 import javax.microedition.midlet.*;
 

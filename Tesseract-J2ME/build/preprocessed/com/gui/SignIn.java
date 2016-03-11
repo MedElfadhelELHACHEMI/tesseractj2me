@@ -171,7 +171,7 @@ public class SignIn extends Canvas implements Runnable {
 
     public void run() {
         if(Thread.currentThread().getName().equals("login")){
-            String str = "http://localhost/pi/login.php?username=" + username.trim() + "&password=" + pwd.trim();
+            String str = "http://localhost/tesseractj2me/tesseract_php/login.php?username=" + username.trim() + "&password=" + pwd.trim();
             verif=false;
             try {
                 httpConnection = (HttpConnection) Connector.open(str);
