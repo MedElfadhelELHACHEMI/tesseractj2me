@@ -6,7 +6,10 @@
 package com.gui;
 
 import java.io.IOException;
+import java.io.InputStream;
 import javax.microedition.lcdui.*;
+import javax.microedition.media.Manager;
+import javax.microedition.media.Player;
 import tesseract.Midlet;
 
 /**
@@ -52,6 +55,19 @@ public class Animation extends Canvas implements CommandListener,Runnable{
     }
 
     public void run() {
+         try
+           {
+        InputStream is = getClass().getResourceAsStream("/com/gui/images/video/1212.mp3");
+        Player player = Manager.createPlayer(is,"audio/mp3");
+
+        //  if "audio/mpeg" doesn't work try "audio/mp3"
+
+        player.realize();  
+        player.prefetch();
+        player.start();
+        }
+        catch(Exception e)
+        {}
         int x=-1;
         boolean wsel = false;
         while(true) {
