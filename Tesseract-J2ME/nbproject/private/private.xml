@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Bacem/Documents/GitHub/PIDEV/Tesseract-J2ME/src/com/gui/SignUp.java</file>
-            <file>file:/C:/Users/Bacem/Documents/GitHub/PIDEV/Tesseract-J2ME/src/com/gui/SignIn.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/gui/Welcome.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/gui/LoginChoice.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/entities/Apprenant.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/gui/Animation.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/entities/Utilisateur.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/gui/SignIn.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/tesseract/Midlet.java</file>
+            <file>file:/C:/wamp/www/tesseractj2me/Tesseract-J2ME/src/com/handler/UtilisateurHandler.java</file>
         </group>
     </open-files>
 </project-private>

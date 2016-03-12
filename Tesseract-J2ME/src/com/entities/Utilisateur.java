@@ -55,6 +55,30 @@ public class Utilisateur {
         this.Role=Role;
         this.sexe = sexe;
     }
+
+    public Utilisateur(int idUtilisateur, String nomUtilisateur, String motDePass, String nom, int tel, String adresse, String mail, String photo, String Role) {
+        this.idUtilisateur = idUtilisateur;
+        this.nomUtilisateur = nomUtilisateur;
+        this.motDePass = motDePass;
+        this.nom = nom;
+        this.tel = tel;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.photo = photo;
+        this.Role = Role;
+    }
+
+    public Utilisateur(String nomUtilisateur, String motDePass, String nom, int tel, String adresse, String mail, String photo, String Role) {
+        this.nomUtilisateur = nomUtilisateur;
+        this.motDePass = motDePass;
+        this.nom = nom;
+        this.tel = tel;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.photo = photo;
+        this.Role = Role;
+    }
+    
     public Utilisateur(Utilisateur u) {
       this.idUtilisateur = u.getIdUtilisateur();
         this.nomUtilisateur = u.getNomUtilisateur();

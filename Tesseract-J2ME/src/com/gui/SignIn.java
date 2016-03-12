@@ -183,6 +183,8 @@ public class SignIn extends Canvas implements Runnable {
                     Apprenant currentUtilisateur = new Apprenant((Apprenant) utilisateurHandler.getUtilisateur()[0]);
                     verif=true;
                     Midlet.INSTANCE.ApprenantCurrent=currentUtilisateur;
+                    role=currentUtilisateur.getRole();
+                    System.out.println(role);
                     
                 }
                 Thread.currentThread().interrupt();
@@ -198,7 +200,12 @@ public class SignIn extends Canvas implements Runnable {
         if(verif== false) {
             repaint();
         } else {
+            if(role.equals("APR")){
             Midlet.INSTANCE.disp.setCurrent(new ApprenantMenu());
+            }
+            if(role.equals("ORG")){
+            Midlet.INSTANCE.disp.setCurrent(new OrganisationMenu());
+            }
         }
     }
     
